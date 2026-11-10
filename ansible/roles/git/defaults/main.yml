@@ -1,0 +1,8 @@
+git_user: "raulcs16"
+git_repo: "devops"
+git_url: "https://github.com/{{git_user}}/{{git_repo}}.git"
+
+temp_path: "/tmp/{{git_repo}}"
+
+target_user: "ansible"
+target_path: "/home/{{target_user}}/{{git_repo}}"

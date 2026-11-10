@@ -1,0 +1,72 @@
+# ==========================================
+# General / OS / Environment
+# ==========================================
+.DS_Store
+Thumbs.db
+.env
+*.log
+*.swp
+*.swo
+
+# ==========================================
+# Terraform
+# ==========================================
+# Local .terraform directories and plugins
+.terraform/
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude sensitive configuration/variable files (keep templates like .tfvars.example)
+*.tfvars
+!*.tfvars.example
+*.tfvars.json
+!*.tfvars.json.example
+
+# CLI configuration
+.terraformrc
+terraform.rc
+
+# ==========================================
+# Ansible
+# ==========================================
+# Local ansible cache and logs
+.ansible/
+*.retry
+
+# Vault password files (never commit secrets)
+.vault-pass
+.ansible_vault
+
+# ==========================================
+# Firebase
+# ==========================================
+# Firebase CLI cache and temporary files
+.firebase/
+firebase-debug.log
+ui-debug.log
+
+# ==========================================
+# Vagrant
+# ==========================================
+# Local Vagrant working directories and VM instances
+.vagrant/
+
+# ==========================================
+# Docker
+# ==========================================
+# Local persistent database/volume storage used in docker-compose
+db_data/
+postgres_data/
+mysql_data/
+redis_data/
+volumes/
+docker-data/
+
+# Optional: Uncomment if you use local overrides that shouldn't be committed
+# docker-compose.override.yml

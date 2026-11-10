@@ -1,0 +1,10 @@
+all:
+  hosts:
+
+  children:
+    public:
+      hosts:
+    apps:
+      hosts:
+    services:
+      hosts:

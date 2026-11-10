@@ -1,0 +1,107 @@
+# Infrastructure Overview
+
+## Topology
+
+[CLOUD]-----[ R1 ]----[ CD1 ]----[ ACC1 ]
+            |    |    |          |
+            |  [ MANGEMENT SWITCH ]
+            |
+        [ Console Server ]
+
+## Objective
+
+Set up OOB managment, such that the console server only one who can ssh into each network devices, essentially creating the management plane
+
+## R1 Config
+
+```bash router
+
+config t
+int loopback 0
+ip address 192.168.100.254 255.255.255.2555
+no shutdown
+int eth 0/0
+ip address 10.1.100.0 255.255.255.254
+no shutdown
+ip route 192.168.100.0 255.255.255.0 10.1.100.1
+
+int eth 1/3
+ip address dhcp
+no shutdown 
+ip nat outside
+
+
+int eth 1/2
+ip address 192.168.200.1 255.255.255.252
+no shutdown
+ip nat inside
+exit
+
+ip nat inside source static 192.168.200.2 interface eth 1/3 
+ip route 192.168.200.0 255.255.255.252 192.168.200.1
+
+```
+
+```bash OOB
+config t
+vlan 100
+name OOB
+int vlan 100
+ip address 192.168.100.1 255.255.255.0
+no shutdown
+int eth 0/0
+switchport mode access
+switchport access vlan 100
+spanning-tree portfast
+spanning tree bpdugaurd enable
+no shutdown
+
+int eth 0/1 [to routers]
+no switchport 
+ip address 10.1.100.1 255.255.255.254
+no shutdown
+exit 
+ip routing
+ip route 192.168.100.254 255.255.255.255 10.1.100.0
+
+int eth [to switches]
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 100
+no shutdown
+```
+
+```bash SWITCHES
+config t
+vlan 100
+name OOB
+int vlan 100
+ip address 192.168.100.x1 255.255.255.0 # x = 1 for cd 2 for acc switch
+no shutdown
+int eth 0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 100
+no shutdown
+```
+
+```yaml Ubuntu Server
+network:
+    ethernets:
+        ens3:
+            dhcp4: no
+            addresses:
+                - 192.168.100.99/24
+        ens4:
+            dhcp4: no 
+            addresses:
+                - 192.168.200.2/30
+            routes:  
+                - to: default
+                  via: 192.168.200.1
+            nameservers:
+                addresses:
+                    - 8.8.8.8
+version: 2
+
+```

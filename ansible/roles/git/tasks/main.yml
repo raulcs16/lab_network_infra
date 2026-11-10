@@ -1,0 +1,11 @@
+- name: pre clean up
+  ansible.builtin.include_tasks: clean_temp.yml
+
+- name: git clone {{git_url}}
+  ansible.builtin.include_tasks: clone.yml
+
+- name: clean copy
+  ansible.builtin.include_tasks: copy_temp.yml
+
+- name: post clean up
+  ansible.builtin.include_tasks: clean_temp.yml
