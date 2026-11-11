@@ -85,7 +85,7 @@ switchport trunk allowed vlan 100
 no shutdown
 ```
 
-```yaml Ubuntu Server
+```yaml netplan/00-config.yml
 network:
     ethernets:
         ens3:
@@ -103,5 +103,12 @@ network:
                 addresses:
                     - 8.8.8.8
 version: 2
+```
 
+```bash ubuntu
+sudo -i 
+netplan try
+netplan apply
+sudo apt update
+sudo apt install -y git
 ```
