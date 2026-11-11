@@ -37,7 +37,8 @@ no shutdown
 ip nat inside
 exit
 
-ip nat inside source static 192.168.200.2 interface eth 1/3 
+access-list 1 permit 192.168.200.0 0.0.0.3 
+ip nat inside source list 1 interface eth 1/3 
 ip route 192.168.200.0 255.255.255.252 192.168.200.1
 
 ```
