@@ -1,0 +1,4 @@
+domain_name: "netlab.local"
+username: "ansible"
+sercet: "mysuper_secret_password"
+public_key: "{{ lookup('file', '~/.ssh/netlab.pub') }}"

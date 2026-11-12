@@ -1,0 +1,22 @@
+---
+- name: Configure SSH and Public Key Authentication
+  ios_config:
+    lines:
+      - ip domain-name {{ domain_name }}
+      - crypto key generate rsa modulus 2048
+      - username {{ username }} privilege 15 secret {{ secret }}
+      - ip ssh version 2
+      - ip ssh pubkey-chain
+      - username {{ username }}
+      - key-string
+      - "{{ public_key | trim }}"
+      - exit
+      - exit
+      - line vty 0 15
+      - transport input ssh
+      - login local
+
+- name: Save configuration
+  ios_config:
+    lines:
+      - write memory
