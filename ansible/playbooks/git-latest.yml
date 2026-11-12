@@ -1,4 +1,5 @@
 - name: Git Clone Latest
   hosts: localhost
+  gather_facts: false
   roles:
     - git
