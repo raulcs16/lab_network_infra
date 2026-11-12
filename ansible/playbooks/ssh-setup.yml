@@ -1,0 +1,11 @@
+---
+- name: Set up SSH key login and bootstrap
+  hosts: all
+  vars:
+    ansible_connection: telnet
+    ansible_port: 23
+    ansible_user: cisco
+    ansible_password: cisco
+  roles:
+    - ssh
+...

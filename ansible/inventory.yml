@@ -1,10 +1,25 @@
 all:
   hosts:
-
+    R1:
+      ansible_host: 192.168.100.254
+    OOB:
+      ansible_host: 192.168.100.1
+    CD1:
+      ansible_host: 192.168.100.11
+    ACC1:
+      ansible_host: 192.168.100.21
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: ios
+    ansible_user: ansible
+    ansible_ssh_private_key_file: /home/ansible/.ssh/netlab
   children:
-    public:
+    routers:
       hosts:
-    apps:
+        R1:
+    cd_switches:
       hosts:
-    services:
+        CD1:
+    acc_switches:
       hosts:
+        ACC1:

@@ -1,0 +1,4 @@
+- name: Git Clone Latest
+  hosts: localhost
+  roles:
+    - git
