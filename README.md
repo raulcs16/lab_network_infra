@@ -6,7 +6,7 @@
 [CLOUD]-----[ R1 ]----[ CD1 ]----[ ACC1 ]
             |    |    |          |
             |  [ MANGEMENT SWITCH ]
-            |
+            |        |
         [ Console Server ]
 ```
 
