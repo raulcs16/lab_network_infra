@@ -1,4 +1,6 @@
-# Infrastructure Overview
+# Network Infrastructure and Out-Of-Band Mangament Lab
+
+A fully automated network enviroment utlizing a dual NIC ubuntu server to act as a bashton/console server.
 
 ## Topology
 
@@ -12,11 +14,17 @@
 
 ## Objectives
 
-The key objective for this lab is to set up a bashton host which also acts as a console server, the bashton host will allows us to ssh into the server where then we set up ansible to it and via an MGM switch we get connected to each network device, allowing use to configure them using ansible,
+1. **Bastion & Console Server**: Establish a secure gateway server with dual network interfaces to separate transit traffic from internal management.
 
-Set up OOB managment, such that the console server only one who can ssh into each network devices, essentially creating the management plane
+2. **Out-of-Band (OOB) Management Plane**: Isolate switch management traffic onto VLAN 100 so that only the console server can directly access and configure network devices.
 
-## Router Set Up
+3. **Infrastructure as Code (IaC)**: Use a minimal bootstrap shell script to provision the control environment, hand off configuration management entirely to local Ansible playbooks, and secure access via SSH key-only authentication.
+
+## Quickstart & Deployment Guide
+
+### 1. Edge Router (R1) configuration
+
+configure teh gateway router with DHCP WAN interface, NAT overload (PAT) and inbound static port forwarding for extenrall ssh access
 
 ```bash router
 config t
@@ -46,7 +54,9 @@ ip nat inside source static tcp 192.168.200.2 22 int eth 1/3 2222
 ip route 192.168.200.0 255.255.255.252 192.168.200.1
 ```
 
-## Ubuntu Server Set up
+### 2. Ubunutu Bastion Server  
+
+Configure the dual interfaces (ens3 OOB management, ens4 for transit) and apply provision ansible
 
 ```bash ubuntu
 sudo -i 
@@ -82,10 +92,9 @@ git clone htts://github.com/raulcs16/lab_network_infra.git repo
 cd repo/boostrap
 chmod +x ansible.sh
 ./ansible.sh
-
 ```
 
-## Switch Set up
+### 3. OOB and Device Managment Set up
 
 ```bash OOB
 config t
