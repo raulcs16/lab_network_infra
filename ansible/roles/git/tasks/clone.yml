@@ -1,7 +1,7 @@
 - name: Clone Latest
   git:
-    repo: "{{git_url}}"
-    dest: "{{temp_path}}"
-    vesrion: main
+    repo: { { git_url } }
+    dest: { { temp_path } }
+    version: main
     force: yes
   register: git_clone

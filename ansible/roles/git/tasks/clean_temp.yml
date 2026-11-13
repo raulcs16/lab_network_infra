@@ -1,4 +1,4 @@
 - name: clean temp
   file:
-    path: "{{temp_path}}"
+    path: { { temp_path } }
     state: absent

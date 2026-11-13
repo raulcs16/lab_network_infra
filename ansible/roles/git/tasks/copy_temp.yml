@@ -1,16 +1,16 @@
 - name: Ensure target ansible directory exists in user home
   file:
-    path: "{{target_path}}"
+    path: { { target_path } }
     state: directory
-    owner: "{{target_user}}"
-    group: "{{target_user}}"
+    owner: { { target_user } }
+    group: { { target_user } }
     mode: "0755"
 
 - name: Copy ansible files from temp clone to target destination
   copy:
-    src: "{{temp_path}}"
-    dest: "{{target_path}}"
+    src: { { temp_path } }
+    dest: { { target_path } }
     remote_src: yes
-    owner: "{{ target_user }}"
-    group: "{{ target_user }}"
+    owner: { { target_user } }
+    group: { { target_user } }
     mode: preserve
