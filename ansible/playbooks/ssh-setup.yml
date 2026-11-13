@@ -5,6 +5,9 @@
   vars:
     ansible_user: cisco
     ansible_password: cisco
+    ansible_ssh_private_key_file: ""
+    ansible_connection: network_cli
+    ansible_network_os: ios
   roles:
     - ssh
 ...
