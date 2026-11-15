@@ -1,3 +1,8 @@
+- name: Ensure target directory is clean before copying new files
+  ansible.builtin.file:
+    path: "{{ target_path }}"
+    state: absent
+
 - name: Ensure target ansible directory exists in user home
   file:
     path: "{{ target_path }}"
