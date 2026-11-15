@@ -6,4 +6,4 @@
       - ip address "{{ item.ipv4 }} {{item.mask}}""
       - ip nat inside
       - no shutdown
-    loop: { { downlinks } }
+    loop: "{{ downlinks }}"
