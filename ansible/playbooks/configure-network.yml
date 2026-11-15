@@ -1,0 +1,7 @@
+---
+- name: Configure network
+  hosts: all
+  gather_facts: false
+  roles:
+    - role: router
+      when: inventory_hostname in groups['routers']
