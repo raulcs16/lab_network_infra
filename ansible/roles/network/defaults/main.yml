@@ -1,5 +1,5 @@
-vlans:
+vlans: []
 interfaces:
-  loopback:
-  vlan:
-  ethernet:
+  loopback: []
+  vlan: []
+  ethernet: []
