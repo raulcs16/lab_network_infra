@@ -1,12 +1,12 @@
 all:
   hosts:
-    R1:
+    r1:
       ansible_host: 192.168.100.254
-    OOB:
+    oob:
       ansible_host: 192.168.100.1
-    CD1:
+    cd1:
       ansible_host: 192.168.100.11
-    ACC1:
+    acc1:
       ansible_host: 192.168.100.21
   vars:
     ansible_connection: network_cli
@@ -16,13 +16,13 @@ all:
   children:
     routers:
       hosts:
-        R1:
+        r1:
     cd_switches:
       hosts:
-        CD1:
+        cd1:
     acc_switches:
       hosts:
-        ACC1:
+        acc1:
     switches:
       hosts:
         cd_switches:
