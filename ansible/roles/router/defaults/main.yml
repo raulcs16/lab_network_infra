@@ -1,0 +1,20 @@
+router_id: "1.1.1.1"
+
+wan_port: "Ethernet1/3"
+
+lan:
+  ipv4: "10.1.0.0"
+  wildcard: "0.0.255.255"
+  mask: "255.255.0.0"
+
+downlinks:
+  - interface: "Ethernet0/1"
+    ipv4: "10.1.1.0"
+    mask: "255.255.255.254"
+    description: "downlink to cd1"
+
+ospfs:
+  - area: 0
+    proccess_id: 1
+    network: "10.1.0.0"
+    wildcard: "0.0.255.255"

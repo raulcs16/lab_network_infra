@@ -1,0 +1,12 @@
+- name: Interface Configuration
+  ansible.builtin.include_tasks: interfaces.yml
+
+- name: Route Configuration
+  ansible.builtin.include_tasks: routing.yml
+
+- name: PAT Configuration
+  ansible.builtin.include_tasks: routing.yml
+
+- name: Save Configuration
+  cisco.ios.ios_command:
+    commands: write memory

@@ -1,0 +1,5 @@
+- name: configure PAT
+  cisco.config.ios:
+    lines:
+      - access-list 1 permit "{{ lan.ipv4 }} {{ lan.wildcard }}"
+      - ip nat inside source list 1 int "{{ wan_port }}" overload

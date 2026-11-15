@@ -1,0 +1,9 @@
+- name: Configure Downlinks to CD Switches
+  cisco.ios.ios_config:
+    lines:
+      - int "{{item.interface}}"
+      - description "{{ item.description }}"
+      - ip address "{{ item.ipv4 }} {{item.mask}}""
+      - ip nat inside
+      - no shutdown
+    loop: { { downlinks } }
