@@ -1,0 +1,4 @@
+- name: Configure VLAN IDS
+  ansible.builtin.include_tasks: vlans.yml
+# - name: Configure Interfaces
+#   ansible.builtin.include_tasks: interfaces.yml

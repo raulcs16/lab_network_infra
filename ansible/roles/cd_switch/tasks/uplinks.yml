@@ -1,9 +1,0 @@
-- name: uplinks
-  cisco.ios.ios_config:
-    lines:
-      - int "{{ item.interface }}"
-      - no switchport
-      - description "{{ item.description }}"
-      - ip address "{{ item.ipv4 }} {{ item.mask }}"
-      - no shutdown
-  loop: "{{ uplinks }}"
