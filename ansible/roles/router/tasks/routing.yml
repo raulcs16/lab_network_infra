@@ -4,4 +4,4 @@
       - router ospf "{{ item.process_id }}"
       - router-id "{{ router_id }}"
       - network "{{ item.network }} {{item.wildcard}} {{item.area}}"
-  loop: ospfs
+  loop: "{{ ospfs }}"
