@@ -1,0 +1,63 @@
+vlans:
+  - id: 100
+    name: "OOB Management"
+
+interfaces:
+  vlan:
+    100:
+      shutdown: false
+      ipv4: "192.168.100.1"
+      mask: "255.255.255.0"
+      description: "managment id"
+  ethernet:
+    0/0:
+      shutdown: false
+      switchport: "access"
+      vlans: [100]
+      description: "link to Bastion host"
+    0/1:
+      shutdown: false
+      switchport: "none"
+      nat: "none"
+      ipv4: "10.1.100.1"
+      mask: "255.255.255.254"
+      description: "p2p link to R1"
+    0/2:
+      shutdown: true
+    0/3:
+      shutdown: true
+    1/0:
+      shutdown: false
+      switchport: "trunk"
+      vlans: [100]
+      description: "trunk to cd1"
+    1/1/:
+      shutdown: true
+    1/2:
+      shutdown: true
+    1/3:
+      shutdown: true
+    2/0:
+      shutdown: false
+      switchport: "trunk"
+      vlans: [100]
+      description: "trunk to acc1"
+    2/1:
+      shutdown: true
+    2/2:
+      shutdown: true
+    2/3:
+      shutdown: true
+    3/0:
+      shutdown: true
+    3/1:
+      shutdown: true
+    3/2:
+      shutdown: true
+    3/3:
+    shutdown: true
+
+static_routes:
+  - from: "192.168.100.254"
+    mask: "255.255.255.255"
+    to: "10.1.100.0"
