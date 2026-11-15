@@ -1,0 +1,5 @@
+vlans:
+interfaces:
+  loopback:
+  vlan:
+  ethernet:
