@@ -20,7 +20,7 @@ cat-config:
 verify-ssh:
 	$(BASHTON) "cd ./lab_network_infra/ansible && ansible all -m ios_command -a \"commands='show version | include uptime'\" "
 
-playbooks:
+show-plays:
 	$(BASHTON) "ls ./lab_network_infra/ansible/playbooks"
 run-play:
 	$(BASHTON) "cd ./lab_network_infra/ansible && ANSIBLE_DEBUG=$(DEBUG) ansible-playbook playbooks/$(PLAYBOOK) $(CHECK_FLAG)" 

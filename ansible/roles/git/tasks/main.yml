@@ -6,6 +6,3 @@
 
 - name: clean copy
   ansible.builtin.include_tasks: copy_temp.yml
-
-- name: post clean up
-  ansible.builtin.include_tasks: clean_temp.yml
