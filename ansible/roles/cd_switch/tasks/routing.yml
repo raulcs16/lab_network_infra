@@ -1,0 +1,18 @@
+- name: enable ip routing
+  cisco.ios.ios_config:
+    lines:
+      - ip routing
+
+- name: Configure OSPF Routing
+  cisco.ios.ios_config:
+    lines:
+      - router ospf "{{ item.proccess_id }}"
+      - router-id "{{ router_id }}"
+      - network "{{ item.network }} {{item.wildcard}} area {{item.area}}"
+  loop: "{{ ospfs }}"
+
+- name: make vlan interface passive
+  cisco.ios.ios_config:
+    lines:
+      - passive-interface "{{ item.id }}"
+  loop: "{{ vlans }}"

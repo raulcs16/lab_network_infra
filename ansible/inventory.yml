@@ -23,3 +23,7 @@ all:
     acc_switches:
       hosts:
         ACC1:
+    switches:
+      hosts:
+        cd_switches:
+        acc_switches:
