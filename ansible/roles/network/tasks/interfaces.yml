@@ -37,7 +37,7 @@
 
 - name: Configure shutdown ethernet interfaces
   cisco.ios.ios_config:
-    parents: "interface {{ item.key }}"
+    parents: "interface ethernet {{ item.key }}"
     lines:
       - shutdown
   loop: "{{ interfaces.ethernet | dict2items | selectattr('value.shutdown', 'equalto', true) | list }}"
@@ -45,7 +45,7 @@
 
 - name: Configure Layer 3 ethernet interfaces with NAT
   cisco.ios.ios_config:
-    parents: "interface {{ item.key }}"
+    parents: "interface ethernet {{ item.key }}"
     lines:
       - no switchport
       - description {{ item.value.description }}
@@ -57,7 +57,7 @@
 
 - name: Configure Layer 3 ethernet interfaces without NAT
   cisco.ios.ios_config:
-    parents: "interface {{ item.key }}"
+    parents: "interface ethernet {{ item.key }}"
     lines:
       - no switchport
       - description {{ item.value.description }}
@@ -68,7 +68,7 @@
 
 - name: Configure trunk ethernet interfaces
   cisco.ios.ios_config:
-    parents: "interface {{ item.key }}"
+    parents: "interface ethernet {{ item.key }}"
     lines:
       - switchport
       - description {{ item.value.description }}
@@ -81,7 +81,7 @@
 
 - name: Configure access ethernet interfaces
   cisco.ios.ios_config:
-    parents: "interface {{ item.key }}"
+    parents: "interface ethernet {{ item.key }}"
     lines:
       - switchport
       - description {{ item.value.description }}
