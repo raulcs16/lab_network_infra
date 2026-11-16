@@ -1,22 +1,22 @@
 all:
-  hosts:
-    r1:
-      ansible_host: 192.168.100.254
-    oob:
-      ansible_host: 192.168.100.1
-    cd1:
-      ansible_host: 192.168.100.11
-    acc1:
-      ansible_host: 192.168.100.21
   vars:
     ansible_connection: network_cli
     ansible_network_os: ios
     ansible_user: ansible
     ansible_password: mysupersecret
 routers:
-  children:
+  hosts:
     r1:
-switches:
-  children:
+      ansible_host: 192.168.100.254
+mgmt_switches:
+  hosts:
+    oob:
+      ansible_host: 192.168.100.1
+cd_switches:
+  hosts:
     cd1:
+      ansible_host: 192.168.100.11
+acc_switches:
+  hosts:
     acc1:
+      ansible_host: 192.168.100.21
