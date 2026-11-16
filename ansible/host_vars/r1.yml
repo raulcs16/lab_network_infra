@@ -6,10 +6,10 @@ interfaces:
   loopback:
     100:
       shutdown: false
+      management: true
       ipv4: "192.168.100.254"
       mask: "255.255.255.255"
-      description: "managment id"
-      nat:
+      description: "management id"
   ethernet:
     0/0:
       shutdown: true
