@@ -58,6 +58,6 @@ interfaces:
     shutdown: true
 
 static_routes:
-  - from: "192.168.100.254"
+  - dest: "192.168.100.254"
     mask: "255.255.255.255"
-    to: "10.1.100.0"
+    from: "10.1.100.0"

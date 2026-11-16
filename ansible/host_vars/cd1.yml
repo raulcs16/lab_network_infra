@@ -64,9 +64,9 @@ interfaces:
       shutdown: true
 
 static_routes:
-  - from: "192.168.200.0"
+  - dest: "192.168.200.0"
     mask: "255.255.255.252"
-    to: "192.168.200.1"
+    from: "192.168.200.1"
 
 ospf_list:
   - pid: 1

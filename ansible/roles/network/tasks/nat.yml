@@ -1,0 +1,11 @@
+- name: Configure Acces Lists
+  cisco.ios.ios_config:
+    lines:
+      - access-list "{{ item.id }} {{ item.allow }} {{ item.network }} {{ item.wildcard }}"
+  loop: "{{ access_list }}"
+
+- name: Configure NAT
+  cisco.ios.ios_config:
+    lines:
+      - ip nat inside source "{{ item.inport }} {{ item.fwdport }}"
+  loop: "{{ nat_list }}"

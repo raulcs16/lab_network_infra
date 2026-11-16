@@ -1,0 +1,20 @@
+- name: Enable IP routing
+  cisco.ios.ios_config:
+    lines:
+      - ip routing
+  when: static_routes is defined or ospf_list is defined
+
+- name: Configure Static Routes
+  cisco.ios.ios_config:
+    lines:
+      - ip route {{ item.dest }} {{ item.mask }} {{ item.from }}
+  loop: "{{ static_routes }}"
+  when: static_routes is defined and static_routes | length > 0
+
+- name: Configure OSPF Process
+  cisco.ios.ios_config:
+    lines:
+      - router ospf {{ item.pid }}
+      - network {{ item.network }} {{ item.wildcard }} area {{ item.area }}
+  loop: "{{ ospf_list }}"
+  when: ospf_list is defined and ospf_list | length > 0
