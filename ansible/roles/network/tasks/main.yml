@@ -9,4 +9,4 @@
 
 - name: Configure NAT
   ansible.builtin.include_tasks: nat.yml
-  when: hostname in groups['routers']
+  when: inventory_hostname in groups['routers']
