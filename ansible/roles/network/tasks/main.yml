@@ -4,8 +4,9 @@
 # - name: Configure Interfaces
 #   ansible.builtin.include_tasks: interfaces.yml
 
-- name: Configure Routing
-  ansible.builtin.include_tasks: routes.yml
-# - name: Configure NAT
-#   ansible.builtin.include_tasks: nat.yml
-#   when: hostname in groups['routers']
+# - name: Configure Routing
+#   ansible.builtin.include_tasks: routes.yml
+
+- name: Configure NAT
+  ansible.builtin.include_tasks: nat.yml
+  when: hostname in groups['routers']
