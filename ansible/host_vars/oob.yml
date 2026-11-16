@@ -13,7 +13,7 @@ interfaces:
     0/0:
       shutdown: false
       switchport: "access"
-      vlans: [100]
+      vlan: 100
       description: "link to Bastion host"
     0/1:
       shutdown: false
