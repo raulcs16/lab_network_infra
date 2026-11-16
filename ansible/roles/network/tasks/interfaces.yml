@@ -4,47 +4,46 @@
       - int loopback "{{ item.key }}"
         {% if item.value.shutdown == true %}
       - shutdown
-        {% elif %}
       - description "{{ item.description }}"
       - ip add "{{ item.value.ipv4 }} {{ item.value.mask }}"
       - no shutdown
         {%endif}
   loop: "{{ interfaces.loopback | dict2items }}"
+  when: interfaces.loopback is defined and interfaces.loopback | length > 0
+# - name: configure vlans
+#   cisco.ios.ios_config:
+#     lines:
+#       - int vlan "{{ item.key }}"
+#         {% if item.value.shutdown == true %}
+#       - shutdown
+#         {% elif %}
+#       - description "{{ item.value.description }}"
+#       - ip add "{{ item.value.ipv4 }} {{ item.value.mask }}"
+#       - no shutdown
+#         {%endif}
+#   loop: "{{ interfaces.vlan | dict2items }}"
 
-- name: configure vlans
-  cisco.ios.ios_config:
-    lines:
-      - int vlan "{{ item.key }}"
-        {% if item.value.shutdown == true %}
-      - shutdown
-        {% elif %}
-      - description "{{ item.value.description }}"
-      - ip add "{{ item.value.ipv4 }} {{ item.value.mask }}"
-      - no shutdown
-        {%endif}
-  loop: "{{ interfaces.vlan | dict2items }}"
-
-- name: configure ethernets
-  cisco.ios.ios_config:
-    lines:
-      - int eth "{{ item.key }}"
-        {% if item.value.shutdown == true %}
-      - shutdown
-        {% elif %}
-      - no shutdown
-      - description "{{ item.value.description }}"
-        {%endif}
-        {% if item.value.switchport === "none" %}
-      - ip add "{{ item.value.ipv4 }} {{ item.value.mask }}"
-        {% if item.value.nat != "none" %}
-      - ip nat "{{ item.value.nat }}"
-        {% endif% }
-        {% elif item.value.switchport === "trunk" %}
-      - switchport trunk encapsulation dot1q
-      - switchport mode trunk
-      - switchport trunk allowed vlans "{{ items.value.vlans | join(',') }}"
-        {% elif %}
-      - switchport mode access
-      - switchport access vlan "{{ item.vlaue.vlans | joing(',') }}"
-        {% endif %}
-  loop: "{{ interfaces.ethernet | dict2items }}"
+# - name: configure ethernets
+#   cisco.ios.ios_config:
+#     lines:
+#       - int eth "{{ item.key }}"
+#         {% if item.value.shutdown == true %}
+#       - shutdown
+#         {% elif %}
+#       - no shutdown
+#       - description "{{ item.value.description }}"
+#         {%endif}
+#         {% if item.value.switchport === "none" %}
+#       - ip add "{{ item.value.ipv4 }} {{ item.value.mask }}"
+#         {% if item.value.nat != "none" %}
+#       - ip nat "{{ item.value.nat }}"
+#         {% endif% }
+#         {% elif item.value.switchport === "trunk" %}
+#       - switchport trunk encapsulation dot1q
+#       - switchport mode trunk
+#       - switchport trunk allowed vlans "{{ items.value.vlans | join(',') }}"
+#         {% elif %}
+#       - switchport mode access
+#       - switchport access vlan "{{ item.vlaue.vlans | joing(',') }}"
+#         {% endif %}
+#   loop: "{{ interfaces.ethernet | dict2items }}"
