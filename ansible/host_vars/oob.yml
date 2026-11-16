@@ -3,7 +3,6 @@ vlans:
     name: "OOB Management"
 
 interfaces:
-  loopback:
   vlan:
     100:
       shutdown: false

@@ -3,7 +3,6 @@ vlans:
     name: "Network Services"
 
 interfaces:
-  loopback:
   vlan:
     10:
       shutdown: false
