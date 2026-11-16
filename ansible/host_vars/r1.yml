@@ -13,7 +13,12 @@ interfaces:
     #   description: "management id"
   ethernet:
     0/0:
-      shutdown: true
+      shutdown: false
+      switchport: "none"
+      nat: "inside"
+      ipv4: "10.1.100.0"
+      mask: "255.255.255.254"
+      description: "p2p link to OOB switch"
     0/1:
       shutdown: false
       switchport: "none"
