@@ -31,7 +31,7 @@ interfaces:
       switchport: "trunk"
       vlans: [100]
       description: "trunk to cd1"
-    1/1/:
+    1/1:
       shutdown: true
     1/2:
       shutdown: true
