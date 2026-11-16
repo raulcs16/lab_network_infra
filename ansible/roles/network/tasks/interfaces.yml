@@ -9,8 +9,7 @@
       - ip add "{{ item.value.ipv4 }} {{ item.value.mask }}"
       - no shutdown
         {%endif}
-
-  loop: "{{ interfaces.loopback }}"
+  loop: "{{ interfaces.loopback | dict2items }}"
 
 - name: configure vlans
   cisco.ios.ios_config:
@@ -23,7 +22,7 @@
       - ip add "{{ item.value.ipv4 }} {{ item.value.mask }}"
       - no shutdown
         {%endif}
-  loop: "{{ interfaces.vlan }}"
+  loop: "{{ interfaces.vlan | dict2items }}"
 
 - name: configure ethernets
   cisco.ios.ios_config:
@@ -48,4 +47,4 @@
       - switchport mode access
       - switchport access vlan "{{ item.vlaue.vlans | joing(',') }}"
         {% endif %}
-  loop: "{{ interfaces.ethernet }}"
+  loop: "{{ interfaces.ethernet | dict2items }}"

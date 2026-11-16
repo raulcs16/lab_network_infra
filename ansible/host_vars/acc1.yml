@@ -32,9 +32,9 @@ interfaces:
     1/0:
       shutdown: false
       switchport: "access"
-      vlans: [10]
+      vlan: 10
       description: "access port to windows server dc1"
-    1/1/:
+    1/1:
       shutdown: true
     1/2:
       shutdown: true
