@@ -4,11 +4,11 @@
       - int loopback "{{ item.key }}"
         {% if item.value.shutdown == true %}
       - shutdown
-        {%else%}
-      - description "{{ item.description }}"
+        {%else %}
+      - description "{{ item.value.description }}"
       - ip add "{{ item.value.ipv4 }} {{ item.value.mask }}"
       - no shutdown
-        {%endif}
+        {% endif %}
   loop: "{{ interfaces.loopback | dict2items }}"
   when: interfaces.loopback is defined and interfaces.loopback | length > 0
 # - name: configure vlans
