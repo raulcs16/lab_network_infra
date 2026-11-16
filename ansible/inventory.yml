@@ -13,17 +13,10 @@ all:
     ansible_network_os: ios
     ansible_user: ansible
     ansible_password: mysupersecret
+routers:
   children:
-    routers:
-      hosts:
-        r1:
-    cd_switches:
-      hosts:
-        cd1:
-    acc_switches:
-      hosts:
-        acc1:
-    switches:
-      hosts:
-        cd_switches:
-        acc_switches:
+    r1:
+switches:
+  children:
+    cd1:
+    acc1:
