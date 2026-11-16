@@ -1,32 +1,22 @@
+all:
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: ios
+    ansible_user: ansible
+    ansible_password: mysupersecret
 routers:
   hosts:
     r1:
       ansible_host: 192.168.100.254
-      ansible_connection: network_cli
-      ansible_network_os: ios
-      ansible_user: ansible
-      ansible_password: mysupersecret
 mgmt_switches:
   hosts:
     oob:
       ansible_host: 192.168.100.1
-      ansible_connection: network_cli
-      ansible_network_os: ios
-      ansible_user: ansible
-      ansible_password: mysupersecret
 cd_switches:
   hosts:
     cd1:
       ansible_host: 192.168.100.11
-      ansible_connection: network_cli
-      ansible_network_os: ios
-      ansible_user: ansible
-      ansible_password: mysupersecret
 acc_switches:
   hosts:
     acc1:
       ansible_host: 192.168.100.21
-      ansible_connection: network_cli
-      ansible_network_os: ios
-      ansible_user: ansible
-      ansible_password: mysupersecret

@@ -15,7 +15,7 @@ interfaces:
       description: "SVI service gateway"
     100:
       shutdown: false
-      ipv4: "192.168.100.1"
+      ipv4: "192.168.100.11"
       mask: "255.255.255.0"
       description: "Management Ip"
   ethernet:
