@@ -86,7 +86,7 @@
       - switchport
       - description {{ item.value.description }}
       - switchport mode access
-      - switchport access vlan {{ item.value.vlan | default(item.value.vlans[0]) }}
+      - switchport access vlan {{ item.value.vlan }}
       - no shutdown
   loop: "{{ interfaces.ethernet | dict2items | selectattr('value.shutdown', 'equalto', false) | selectattr('value.switchport', 'equalto', 'access') | list }}"
   when: interfaces.ethernet is defined and interfaces.ethernet | length > 0
