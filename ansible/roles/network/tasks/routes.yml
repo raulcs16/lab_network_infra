@@ -13,8 +13,8 @@
 
 - name: Configure OSPF Process
   cisco.ios.ios_config:
+    parents: "router ospf {{ item.pid }}"
     lines:
-      - router ospf {{ item.pid }}
       - network {{ item.network }} {{ item.wildcard }} area {{ item.area }}
-  loop: "{{ ospf_list }}"
-  when: ospf_list is defined and ospf_list | length > 0
+  loop: "{{ ospf_networks }}"
+  when: ospf_networks is defined and ospf_networks | length > 0
