@@ -1,11 +1,11 @@
-# - name: Configure VLAN IDS
-#   ansible.builtin.include_tasks: vlans.yml
+- name: Configure VLAN IDS
+  ansible.builtin.include_tasks: vlans.yml
 
-# - name: Configure Interfaces
-#   ansible.builtin.include_tasks: interfaces.yml
+- name: Configure Interfaces
+  ansible.builtin.include_tasks: interfaces.yml
 
-# - name: Configure Routing
-#   ansible.builtin.include_tasks: routes.yml
+- name: Configure Routing
+  ansible.builtin.include_tasks: routes.yml
 
 - name: Configure NAT
   ansible.builtin.include_tasks: nat.yml
