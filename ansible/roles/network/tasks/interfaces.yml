@@ -4,6 +4,7 @@
       - int loopback "{{ item.key }}"
         {% if item.value.shutdown == true %}
       - shutdown
+        {%else%}
       - description "{{ item.description }}"
       - ip add "{{ item.value.ipv4 }} {{ item.value.mask }}"
       - no shutdown
