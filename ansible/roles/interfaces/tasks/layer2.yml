@@ -28,7 +28,7 @@
       - switchport mode trunk
       - switchport trunk allowed vlan {{ item.value.vlans | join(',') }}
       - no shutdown
-  loop: "{{ interfaces.ethernet | dict2items | selectattr('value.shutdown', 'equalto', false) | selectattr('value.switchport', 'equalto', 'trunk') | list }}"
+  loop: "{{ interfaces.ethernet | dict2items | selectattr('value.shutdown', 'equalto', false) | selectattr('value.switchport','defined') | selectattr('value.switchport', 'equalto', 'trunk') | list }}"
   when: interfaces.ethernet is defined and interfaces.ethernet | length > 0
 
 - name: Configure shutdown ethernet interfaces
@@ -47,5 +47,5 @@
       - description {{ item.value.description }}
       - ip address {{ item.value.ipv4 }} {{ item.value.mask }}
       - no shutdown
-  loop: "{{ interfaces.ethernet | dict2items | selectattr('value.shutdown', 'equalto', false) | selectattr('value.switchport', 'equalto', 'none') | list }}"
+  loop: "{{ interfaces.ethernet | dict2items | selectattr('value.shutdown', 'equalto', false) | selectattr('value.switchport','defined')| selectattr('value.switchport', 'equalto', 'none') | list }}"
   when: interfaces.ethernet is defined and interfaces.ethernet | length > 0
