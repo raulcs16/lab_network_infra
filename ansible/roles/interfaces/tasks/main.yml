@@ -1,0 +1,5 @@
+- name: Configure Layer 2 interfaces
+  ansible.builtin.include_tasks: layer2.yml
+
+- name: Configure Layer 3 interfaces
+  ansible.builtin.include_tasks: layer3.yml
