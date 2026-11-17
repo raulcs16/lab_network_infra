@@ -1,6 +1,8 @@
 ---
-- name: Configure network
-  hosts: all
+- hosts: all
   gather_facts: false
   roles:
-    - network
+    - role: vlans
+    - role: interfaces
+    - role: routing
+    - role: nat

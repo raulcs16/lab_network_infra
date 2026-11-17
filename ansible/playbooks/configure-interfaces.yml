@@ -1,5 +1,4 @@
-- name: Configure Interfaces
-  hosts: all
+- hosts: all
   gather_facts: false
   roles:
     - interfaces

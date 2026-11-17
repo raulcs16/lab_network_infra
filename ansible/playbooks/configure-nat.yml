@@ -1,0 +1,4 @@
+- hosts: routers
+  gather_facts: false
+  roles:
+    - nat
