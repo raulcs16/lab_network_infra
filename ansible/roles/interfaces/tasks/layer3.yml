@@ -16,14 +16,6 @@
   loop: "{{ interfaces.loopback | dict2items | selectattr('value.shutdown', 'equalto', false) | list }}"
   when: interfaces.loopback is defined and interfaces.loopback | length > 0
 
-- name: Configure shutdown ethernet interfaces
-  cisco.ios.ios_config:
-    parents: "interface ethernet {{ item.key }}"
-    lines:
-      - shutdown
-  loop: "{{ interfaces.ethernet | dict2items | selectattr('value.shutdown', 'equalto', true) | list }}"
-  when: interfaces.ethernet is defined and interfaces.ethernet | length > 0
-
 - name: Configure Ethernet interfaces
   cisco.ios.ios_config:
     parents: "interface ethernet {{ item.key }}"

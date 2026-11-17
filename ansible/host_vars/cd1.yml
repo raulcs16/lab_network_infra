@@ -28,7 +28,7 @@ interfaces:
       shutdown: false
       switchport: "none"
       ipv4: "10.1.1.1"
-      mask: "255.255.254"
+      mask: "255.255.255.254"
       description: "uplink to R1"
     0/2:
       shutdown: true

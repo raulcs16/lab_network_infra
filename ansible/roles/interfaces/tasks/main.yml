@@ -3,3 +3,11 @@
 
 - name: Configure Layer 3 interfaces
   ansible.builtin.include_tasks: layer3.yml
+
+- name: Configure shutdown ethernet interfaces
+  cisco.ios.ios_config:
+    parents: "interface ethernet {{ item.key }}"
+    lines:
+      - shutdown
+  loop: "{{ interfaces.ethernet | dict2items | selectattr('value.shutdown', 'equalto', true) | list }}"
+  when: interfaces.ethernet is defined and interfaces.ethernet | length > 0
