@@ -1,7 +1,0 @@
-- name: Configure OSPF Routing
-  cisco.ios.ios_config:
-    lines:
-      - router ospf "{{ item.proccess_id }}"
-      - router-id "{{ router_id }}"
-      - network "{{ item.network }} {{item.wildcard}} area {{item.area}}"
-  loop: "{{ ospfs }}"
